@@ -4,3 +4,6 @@ Cargo.lock
 
 # IDEA
 .idea/
+
+# Project
+**/parsed-manifest.ron
