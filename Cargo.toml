@@ -3,6 +3,8 @@ resolver = "2"
 members = [
     "launcher",
     "backend",
+    "curseforge",
+    "modrinth",
 ]
 
 [patch.crates-io]

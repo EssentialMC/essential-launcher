@@ -1,0 +1,6 @@
+[submodule "modrinth"]
+	path = modrinth
+	url = https://github.com/EssentialMC/modrinth-rs
+[submodule "curseforge"]
+	path = curseforge
+	url = https://github.com/EssentialMC/curseforge-rs
