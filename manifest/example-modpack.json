@@ -1,0 +1,33 @@
+{
+    "manifest": {
+        "version": "0.0.1"
+    },
+    "modpack": {
+        "name": "foobar",
+        "version": "0.0.1",
+        "codename": null,
+        "minecraft-version": "1.12.2",
+        "mod-loaders": [
+            {
+                "name": "forge",
+                "version": "1.12.2-14.23.5.2860"
+            }
+        ],
+        "curseforge-mods": [
+            {
+                "slug": "warpdrive"
+            }
+        ],
+        "modrinth-mods": [
+            {
+                "slug": "industrial-craft"
+            }
+        ],
+        "external-files": [
+            {
+                "download-url": "http://jenkins.liteloader.com/job/LiteLoaderInstaller%201.12.2/lastSuccessfulBuild/artifact/build/libs/liteloader-installer-1.12.2-00-SNAPSHOT.jar",
+                "target-file": "mods/liteloader-installer-1.12.2-00-SNAPSHOT.jar"
+            }
+        ]
+    }
+}
