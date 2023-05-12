@@ -1,67 +1,65 @@
-use std::fs::read_to_string;
+//! utility functions and types to process manifest schema
+
+#![warn(missing_docs)]
 
 use serde::{Deserialize, Serialize};
-use serde_json::Value as JsonValue;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let json_str = read_to_string("./example-modpack.json").unwrap();
-        dbg!(serde_json::from_str::<ModpackManifest>(&json_str).unwrap());
-    }
-}
-
+/// top level object of a json modpack manifest
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-struct ModpackManifest {
-    manifest: ManifestMetadata,
-    modpack: ModpackSpecification,
+pub struct ModpackManifest {
+    pub manifest: ManifestMetadata,
+    pub modpack: ModpackSpecification,
 }
 
+/// metadata concerning what format to use when parsing a manifest
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-struct ManifestMetadata {
-    version: String,
+pub struct ManifestMetadata {
+    pub version: String,
 }
 
+/// this contains the data that will be turned into the modpack
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-struct ModpackSpecification {
-    name: String,
-    version: String,
-    codename: Option<String>,
-    minecraft_version: String,
-    mod_loaders: Vec<ModLoader>,
-    curseforge_mods: Vec<CurseForgeMod>,
-    modrinth_mods: Vec<ModrinthMod>,
-    external_files: Vec<ExternalFile>,
+pub struct ModpackSpecification {
+    pub name: String,
+    pub version: String,
+    pub codename: Option<String>,
+    pub minecraft_version: String,
+    pub mod_loaders: Vec<ModLoader>,
+    pub curseforge_mods: Vec<CurseForgeMod>,
+    pub modrinth_mods: Vec<ModrinthMod>,
+    pub external_files: Vec<ExternalFile>,
 }
 
+/// modloaders supported by this launcher
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-struct ModLoader {
-    name: String,
-    version: String,
+#[serde(tag = "name")]
+pub enum ModLoader {
+    Forge { version: String },
+    Fabric { version: String },
 }
 
+///
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-struct CurseForgeMod {
-    slug: String,
+pub struct CurseForgeMod {
+    pub slug: String,
 }
 
+///
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-struct ModrinthMod {
-    slug: String,
+pub struct ModrinthMod {
+    pub slug: String,
 }
 
+///
 #[derive(Debug, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
-struct ExternalFile {
-    download_url: String,
-    target_file: String,
+pub struct ExternalFile {
+    pub download_url: String,
+    pub target_file: String,
 }
